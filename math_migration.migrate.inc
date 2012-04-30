@@ -5,16 +5,6 @@
  * Importing math.osu.edu.
  */ 
 
-Database::addConnectionInfo('math_mig', 'default', array(
-  'driver' => 'mysql',
-  'database' => 'math-temp-04302012',
-  'username' => 'math-temp',
-  'password' => 'UQSTJNqCB1Jb',
-  'host' => 'ascdb-d.asc.ohio-state.edu',
-  'prefix' => '',
-  );
-
-MathDBNamejjj
 
 /* 
  * hook_migrate_api 
@@ -22,13 +12,9 @@ MathDBNamejjj
 function math_migration_migrate_api() {
   $api = array(
     'api' => 2,
-  )
+  );
   return $api;
 }
-
-/**
- * Pull in users.
- */
 
 /**
  * Pull in pages.
@@ -37,6 +23,15 @@ function math_migration_migrate_api() {
 class MathPageMigration extends Migration{
   public function __contstruct() {
     parent::__construct();
+
+Database::addConnectionInfo('math_mig', 'default', array(
+  'driver' => 'mysql',
+  'database' => 'math-temp-04302012',
+  'username' => 'mathtemp',
+  'password' => 'UQSTJNqCB1Jb',
+  'host' => 'ascdb-d.asc.ohio-state.edu',
+  'prefix' => '',
+  );
 
     $this->description = t('Import math scores from temp math database.');
 
@@ -49,10 +44,10 @@ class MathPageMigration extends Migration{
       ->select('node', 'n')
       ->fields('n', array('nid', 'vid', 'type', 'title', 'uid', 'status', 'created', 'changed', 'comment', 'promote', 'moderate', 'sticky'))
       ->condition('n.type', 'page', '=');
-    $query->join(MathDBName .'.node_revisions', 'nr', 'n.vid = nr.vid');
+    $query->join('math-temp-04302012.node_revisions', 'nr', 'n.vid = nr.vid');
     $query->addField('nr', 'body');
     $query->addField('nr', 'teaser');
-    $query->join(MathDBName .'.users', 'u', 'n.uid = u.uid');
+    $query->join('math-temp-04302012.users', 'u', 'n.uid = u.uid');
     $query->addField('u', 'name');
     $query->orderBy('n.changed');
 
