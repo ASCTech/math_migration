@@ -42,6 +42,7 @@ Database::addConnectionInfo('math_mig', 'default', array(
 
     $this->source = new MigrateSourceSQL($query, $source_fields);
     $this->destination = new MigrateDestinationNode('page');
+
          
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -56,5 +57,7 @@ Database::addConnectionInfo('math_mig', 'default', array(
       MigrateDestinationNode::getKeySchema(),
       'math_mig'
    );
+
+    $this->addFieldMapping('title', 'title');
   }
 }
