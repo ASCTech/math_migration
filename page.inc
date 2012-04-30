@@ -33,6 +33,10 @@ Database::addConnectionInfo('math_mig', 'default', array(
       ->select('node', 'n')
       ->fields('n', array('nid', 'vid', 'type', 'title', 'uid', 'status', 'created', 'changed', 'comment', 'promote', 'moderate', 'sticky'))
       ->condition('n.type', 'page', '=');
+    $count_query = Database::getConnection('default', 'math_mig')
+      ->select('node', 'n')
+      ->condition('n.type', 'page', '=');
+    $countr_query->addExpression('COUNT(uid)', 'cnt');
     // $query->join('math-temp-04302012.node_revisions', 'nr', 'n.vid = nr.vid');
     //$query->addField('nr', 'body');
     //$query->addField('nr', 'teaser');
@@ -40,7 +44,7 @@ Database::addConnectionInfo('math_mig', 'default', array(
     //$query->addField('u', 'name');
     //$query->orderBy('n.changed');
 
-    $this->source = new MigrateSourceSQL($query, $source_fields);
+    $this->source = new MigrateSourceSQL($query, $source_fields, $count_query, FALSE);
     $this->destination = new MigrateDestinationNode('page');
 
          
