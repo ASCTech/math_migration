@@ -3,7 +3,7 @@ description "Import old math site"
 package = "Development"
 core = "7.x"
 
-files[] = page.inc
+files[] = math_migration.module
+files[] = math_migration_page.inc
 
 dependencies[] = "migrate"
-
