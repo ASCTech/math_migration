@@ -31,7 +31,7 @@ Database::addConnectionInfo('math_mig', 'default', array(
   'password' => 'UQSTJNqCB1Jb',
   'host' => 'ascdb-d.asc.ohio-state.edu',
   'prefix' => '',
-  );
+  ));
 
     $this->description = t('Import math scores from temp math database.');
 
