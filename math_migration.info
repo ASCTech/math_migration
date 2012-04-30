@@ -1,7 +1,9 @@
-core = "7.x"
-dependencies[] = "migrate"
-
+name = "Math_Migration"
 description "Import old math site"
+package = "Development"
+core = "7.x"
 
-name = "math_migration"
+files[] = math_migration.migrate.inc
+
+dependencies[] = "migrate"
 
