@@ -64,7 +64,8 @@ Database::addConnectionInfo('math_mig', 'default', array(
           'alias' => 'n',
           )
         ),
-      MigrateDestinationNode::getKeySchema()
+      MigrateDestinationNode::getKeySchema(),
+      'math_mig'
    );
   }
 }
