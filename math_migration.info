@@ -1,4 +1,4 @@
-name = "Math_Migration"
+name = "Math Migration"
 description "Import old math site"
 package = "Development"
 core = "7.x"
