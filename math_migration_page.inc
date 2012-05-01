@@ -10,7 +10,7 @@
  */
 
 class MathPageMigration extends Migration {
-  public function __contstruct() {
+  public function __construct() {
     parent::__construct();
 
     $this->description = t('Migrate legacy pages.');
@@ -27,7 +27,7 @@ class MathPageMigration extends Migration {
     $this->map = new MigrateSQLMap($this->machineName,
         array(
           'nid' => array('type' => 'int',
-                           'length' => 8,
+                           'length' => 10,
                            'not null' => TRUE,
                            'description' => 'Node ID',
                           )
@@ -40,7 +40,7 @@ class MathPageMigration extends Migration {
            ->select('node', 'n')
            ->fields('n', array('title'));
 
-    $this->source = new MigrateSourceSQL($query);
+    $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
     $this->destination = new MigrateDestinationNode('page');
 
