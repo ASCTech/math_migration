@@ -9,7 +9,7 @@
  * Pull in users.
  */
 
-class MathPageMigration extends Migration {
+class MathUserMigration extends Migration {
   public function __construct() {
     parent::__construct();
 
