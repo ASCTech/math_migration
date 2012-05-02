@@ -6,5 +6,6 @@ core = "7.x"
 files[] = math_migration.module
 files[] = math_migration_page.inc
 files[] = math_migration_user.inc
+files[] = math_migration_term.inc
 
 dependencies[] = "migrate"
