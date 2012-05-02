@@ -39,7 +39,7 @@ class MathUserMigration extends Migration {
 
     $query = Database::getConnection('default', 'for_migration')
            ->select('users', 'u')
-           ->fields('n', array('uid','mail','name','pass','created','access','login','status','init'))
+           ->fields('u', array('uid','mail','name','pass','created','access','login','status','init'))
            ->condition('u.uid', '3', '>');
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
