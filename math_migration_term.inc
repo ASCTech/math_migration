@@ -84,6 +84,7 @@ class MathTermMigration extends Migration {
       );
 
       taxonomy_vocabulary_save($vocabulary);
+    }
   }
 }
 
