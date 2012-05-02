@@ -38,7 +38,8 @@ class MathPageMigration extends Migration {
 
     $query = Database::getConnection('default', 'for_migration')
            ->select('node', 'n')
-           ->fields('n', array('title'));
+           ->fields('n', array('nid','vid','type','title','uid','status','created','changed','promote','moderate','tnid'))
+           ->condition('n.type', 'page', '=');
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
@@ -48,5 +49,4 @@ class MathPageMigration extends Migration {
 
   }
 }
-
 ?>
