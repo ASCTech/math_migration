@@ -39,14 +39,14 @@ class MathUserMigration extends Migration {
 
     $query = Database::getConnection('default', 'for_migration')
            ->select('users', 'u')
-           ->fields('n', array('uid','mail','pass','created','access','login','status','init'))
+           ->fields('n', array('uid','mail','name','pass','created','access','login','status','init'))
            ->condition('u.uid', '3', '>');
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
     $this->destination = new MigrateDestinationUser();
 
-    $this->addFieldMapping('nid', 'nid');
+    $this->addFieldMapping('uid', 'uid');
 
     $this->addFieldMapping('is_new')->defaultValue(TRUE);
 
@@ -61,8 +61,6 @@ class MathUserMigration extends Migration {
     $this->addFieldMapping('picture')->defaultValue(0);
     $this->addFieldMapping('init', 'init');
     $this->addFieldMapping('timezone')->defaultValue(NULL);
-    $this->addFieldMapping('path')->issueGroup(t('DNM'));
-    $this->addFieldMapping('pathauto_perform_alias')->defaultValue('1');
   }
 }
 
