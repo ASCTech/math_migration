@@ -59,10 +59,9 @@ class MathTermSeminarMigration extends Migration {
       $description = "Events at the Department of Mathematics";
       $help = "";
       $vocabulary = (object) array(
-        'vid' => 7,
         'name' => 'Seminars',
         'description' => $description,
-        'machine_name' => 'seminars',
+        'machine_name' => 'seminar',
         'help' => $help,
         'hierarchy'=> 1,
         'multiple'=> 1

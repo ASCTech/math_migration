@@ -60,7 +60,6 @@ class MathTermSectionMigration extends Migration {
       $description = "Which section of the website this goes in";
       $help = "Select the appropriate section of the website for this page";
       $vocabulary = (object) array(
-        'vid' => 8,
         'name' => 'Section',
         'description' => $description,
         'machine_name' => 'section',
