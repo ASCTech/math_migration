@@ -45,7 +45,7 @@ class MathTermMigration extends Migration {
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
-    $this->destination = new MigrateDestinationUser();
+    $this->destination = new MigrateDestinationTerm();
 
     $this->addSimpleMappings(array('tid', 'name', 'description', 'parent', 'weight'));
 
