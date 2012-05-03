@@ -59,6 +59,7 @@ class MathTermMigration extends Migration {
       $description = "Which section of the website this goes in";
       $help = "Select the appropriate section of the website for this page";
       $vocabulary = (object) array(
+        'vid' => 14,
         'name' => 'Section',
         'description' => $description,
         'machine_name' => 'section',
@@ -74,6 +75,7 @@ class MathTermMigration extends Migration {
       $description = "Events at the Department of Mathematics";
       $help = "";
       $vocabulary = (object) array(
+        'vid' => 15,
         'name' => 'Seminars',
         'description' => $description,
         'machine_name' => 'seminars',
