@@ -48,29 +48,10 @@ class MathTermSeminarMigration extends Migration {
 
     $this->destination = new MigrateDestinationTerm('seminar');
 
-    $this->addSimpleMappings(array('tid', 'name', 'description', 'parent', 'weight'));
+    $this->addSimpleMappings(array('name', 'description', 'parent', 'weight'));
 
   }
 
-  public function preImport() {
-    parent::preImport();
-    if (!taxonomy_vocabulary_load_multiple(array(), array('machine_name' => 'seminars'))) {
-      // Create a vocabulary named "Seminars".
-      $description = "Events at the Department of Mathematics";
-      $help = "";
-      $vocabulary = (object) array(
-        'name' => 'Seminars',
-        'description' => $description,
-        'machine_name' => 'seminar',
-        'help' => $help,
-        'hierarchy'=> 1,
-        'multiple'=> 1
-
-      );
-
-      taxonomy_vocabulary_save($vocabulary);
-    }
-  }
 }
 
 ?>
