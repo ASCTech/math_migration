@@ -47,6 +47,10 @@ class MathPageMigration extends Migration {
 
     $this->addFieldMapping('nid', 'nid');
 
+    $this->addFieldMapping('section', 'sectionid')
+          ->sourceMigration('MathTermSection')
+          ->arguments(array('source_type' => 'tid'));
+
   }
 }
 ?>

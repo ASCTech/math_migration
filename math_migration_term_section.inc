@@ -48,7 +48,7 @@ class MathTermSectionMigration extends Migration {
 
     $this->destination = new MigrateDestinationTerm('section');
 
-    $this->addSimpleMappings(array('tid', 'name', 'description', 'parent', 'weight'));
+    $this->addSimpleMappings(array('name', 'description', 'parent', 'weight'));
 
   }
 
