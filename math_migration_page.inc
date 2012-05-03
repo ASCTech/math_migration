@@ -44,7 +44,6 @@ class MathPageMigration extends Migration {
     $query->addField('tn', 'tid');
     $query->leftJoin('node_revisions', 'nr', 'n.nid = nr.nid AND n.changed = nr.timestamp');
     $query->addField('nr', 'body');
-    $query->addField('nr', 'teaser');
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
@@ -53,7 +52,6 @@ class MathPageMigration extends Migration {
     $this->addSimpleMappings(array('nid', 'title', 'uid', 'status', 'created', 'changed', 'promote'));
 
     $this->addFieldMapping('body', 'body');
-    $this->addFieldMapping('teaser', 'teaser');
 
     $this->addFieldMapping('field_section', 'tid')
            ->sourceMigration('MathTermSection')
