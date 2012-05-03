@@ -40,6 +40,7 @@ class MathPageMigration extends Migration {
            ->select('node', 'n')
            ->fields('n', array('nid','vid','type','title','uid','status','created','changed','promote','moderate','tnid'))
            ->condition('n.type', 'page', '=');
+    $query->leftJoin('term_node', 'tn', 'n.nid = tn.nid');
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
@@ -47,9 +48,9 @@ class MathPageMigration extends Migration {
 
     $this->addFieldMapping('nid', 'nid');
 
-    $this->addFieldMapping('section', 'sectionid')
-          ->sourceMigration('MathTermSection')
-          ->arguments(array('source_type' => 'tid'));
+    $this->addFieldMapping('field_section', 'tid')
+           ->sourceMigration('MathTermSection')
+           ->arguments(array('source_type' => 'tid'));
 
   }
 }
