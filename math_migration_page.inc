@@ -52,7 +52,7 @@ class MathPageMigration extends Migration {
 
     $this->addSimpleMappings(array('nid', 'title', 'uid', 'status', 'created', 'changed', 'promote'));
 
-    $this->addFieldMapping('body', 'nr.body')
+    $this->addFieldMapping('body', 'nr.body');
 
     $this->addFieldMapping('field_section', 'tid')
            ->sourceMigration('MathTermSection')
