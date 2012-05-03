@@ -38,7 +38,7 @@ class MathPageMigration extends Migration {
 
     $query = Database::getConnection('default', 'for_migration')
            ->select('node', 'n')
-           ->fields('n', array('nid','vid','type','title','uid','status','created','body','changed','promote','teaser'))
+           ->fields('n', array('nid','vid','type','title','uid','status','created','changed','promote'))
            ->condition('n.type', 'page', '=');
     $query->leftJoin('term_node', 'tn', 'n.nid = tn.nid');
     $query->addField('tn', 'tid');
