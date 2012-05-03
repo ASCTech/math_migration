@@ -9,7 +9,7 @@
  * Pull in terms..
  */
 
-class MathTermSeminarMigration extends Migration {
+class MathTermSectionMigration extends Migration {
   public function __construct() {
     parent::__construct();
 
