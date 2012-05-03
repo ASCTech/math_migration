@@ -42,7 +42,7 @@ class MathPageMigration extends Migration {
            ->condition('n.type', 'page', '=');
     $query->leftJoin('term_node', 'tn', 'n.nid = tn.nid');
     $query->addField('tn', 'tid');
-    $query->leftJoin('node_revision', 'nr', 'n.nid = nr.nid AND n.changed = nr.timestamp');
+    $query->leftJoin('node_revisions', 'nr', 'n.nid = nr.nid AND n.changed = nr.timestamp');
     $query->addField('nr.body', 'body');
     $query->addField('nr.teaser', 'teaser');
 
