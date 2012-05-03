@@ -50,7 +50,7 @@ class MathPageMigration extends Migration {
 
     $this->destination = new MigrateDestinationNode('page');
 
-    $this->addSimpleMappings(array('nid', 'title', 'uid', 'status', 'created', 'changed', 'promote','body','teaser'));
+    $this->addSimpleMappings(array('nid', 'title', 'uid', 'status', 'created', 'changed', 'promote'));
 
     $this->addFieldMapping('field_section', 'tid')
            ->sourceMigration('MathTermSection')
