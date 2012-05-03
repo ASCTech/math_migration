@@ -51,6 +51,13 @@ class MathPageMigration extends Migration {
 
     $this->addSimpleMappings(array('nid', 'title', 'uid', 'status', 'created', 'changed', 'promote'));
 
+    $this->addFieldMapping('is_new')->defaultValue(TRUE);
+    $this->addFieldMapping('revision')->defaultValue(TRUE);
+    $this->addFieldMapping('language')->defaultValue('und');
+
+    $this->addFieldMapping('path')->issueGroup(t('DNM'));
+    $this->addFieldMapping('pathauto_perform_alias')->defaultValue('1');
+
     $this->addFieldMapping('body', 'body');
 
     $this->addFieldMapping('field_section', 'tid')
