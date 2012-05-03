@@ -58,7 +58,9 @@ class MathPageMigration extends Migration {
     $this->addFieldMapping('path')->issueGroup(t('DNM'));
     $this->addFieldMapping('pathauto_perform_alias')->defaultValue('1');
 
-    $this->addFieldMapping('body', 'body');
+    $body_arguments = MigrateTextFieldHandler::arguments(NULL, filter_default_format(), NULL);
+    $this->addFieldMapping('body', 'body')
+            ->arguments($body_arguments);
 
     $this->addFieldMapping('field_section', 'tid')
            ->sourceMigration('MathTermSection')
