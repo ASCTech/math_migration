@@ -32,13 +32,13 @@ class MathPageMigration extends Migration {
                            'description' => 'Node ID',
                           )
         ),
-        MigrateDestinationTerm::getKeySchema(),
+        MigrateDestinationNode::getKeySchema(),
         'for_migration'
       );
 
     $query = Database::getConnection('default', 'for_migration')
            ->select('node', 'n')
-           ->fields('n', array('nid','vid','type','title','uid','status','created','changed','promote'))
+           ->fields('n', array('nid','type','title','uid','status','created','changed','promote'))
            ->condition('n.type', 'page', '=');
     $query->leftJoin('term_node', 'tn', 'n.nid = tn.nid');
     $query->addField('tn', 'tid');
