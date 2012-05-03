@@ -38,7 +38,7 @@ class MathPageMigration extends Migration {
 
     $query = Database::getConnection('default', 'for_migration')
            ->select('node', 'n')
-           ->fields('n', array('nid','vid','type','title','uid','status','created','changed','promote','moderate'))
+           ->fields('n', array('nid','vid','type','title','uid','status','created','body','title','changed','promote','moderate'))
            ->condition('n.type', 'page', '=');
     $query->leftJoin('term_node', 'tn', 'n.nid = tn.nid');
     $query->addField('tn', 'tid');
@@ -47,11 +47,13 @@ class MathPageMigration extends Migration {
 
     $this->destination = new MigrateDestinationNode('page');
 
-    $this->addFieldMapping('nid', 'nid');
+    $this->addSimpleMappings(array('nid','type', 'title', 'status', 'uid', 'created', 'changed', 'promote'));
 
     $this->addFieldMapping('field_section', 'tid')
            ->sourceMigration('MathTermSection')
            ->arguments(array('source_type' => 'tid'));
+
+
 
   }
 }
