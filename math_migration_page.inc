@@ -41,6 +41,7 @@ class MathPageMigration extends Migration {
            ->fields('n', array('nid','vid','type','title','uid','status','created','changed','promote','moderate'))
            ->condition('n.type', 'page', '=');
     $query->leftJoin('term_node', 'tn', 'n.nid = tn.nid');
+    $query->addField('tn', 'tid');
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
