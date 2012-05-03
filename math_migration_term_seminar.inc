@@ -9,13 +9,13 @@
  * Pull in terms..
  */
 
-class MathTermMigration extends Migration {
+class MathTermSeminarMigration extends Migration {
   public function __construct() {
     parent::__construct();
 
     $this->description = t('Migrate legacy taxonomy terms.');
 
-    Database::addConnectionInfo('for_term_migration', 'default', array(
+    Database::addConnectionInfo('for_term_sem_migration', 'default', array(
       'driver' => 'mysql',
       'database' => 'math-temp-04302012',
       'username' => 'mathtemp',
@@ -34,18 +34,19 @@ class MathTermMigration extends Migration {
                           )
         ),
         MigrateDestinationTerm::getKeySchema(),
-        'for_term_migration'
+        'for_term_sem_migration'
       );
 
-    $query = Database::getConnection('default', 'for_term_migration')
+    $query = Database::getConnection('default', 'for_term_sem_migration')
            ->select('term_data', 'td')
-           ->fields('td', array('tid','vid','name','description','weight'));
+           ->fields('td', array('tid','vid','name','description','weight'))
+           ->condition('td.vid', '7', '=');
     $query->join('term_hierarchy', 'th', 'th.tid = td.tid');
     $query->addField('th', 'parent');
 
     $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
-    $this->destination = new MigrateDestinationTerm();
+    $this->destination = new MigrateDestinationTerm('seminar');
 
     $this->addSimpleMappings(array('tid', 'name', 'description', 'parent', 'weight'));
 
@@ -53,23 +54,6 @@ class MathTermMigration extends Migration {
 
   public function preImport() {
     parent::preImport();
-
-    if (!taxonomy_vocabulary_load_multiple(array(), array('machine_name' => 'section'))) {
-      // Create a vocabulary named "Section".
-      $description = "Which section of the website this goes in";
-      $help = "Select the appropriate section of the website for this page";
-      $vocabulary = (object) array(
-        'vid' => 8,
-        'name' => 'Section',
-        'description' => $description,
-        'machine_name' => 'section',
-        'help' => $help,
-        'hierarchy'=> 1,
-      );
-
-      taxonomy_vocabulary_save($vocabulary);
-    }
-
     if (!taxonomy_vocabulary_load_multiple(array(), array('machine_name' => 'seminars'))) {
       // Create a vocabulary named "Seminars".
       $description = "Events at the Department of Mathematics";
