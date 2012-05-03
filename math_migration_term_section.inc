@@ -70,8 +70,6 @@ class MathTermSeminarMigration extends Migration {
 
       taxonomy_vocabulary_save($vocabulary);
     }
-
-    }
   }
 }
 
