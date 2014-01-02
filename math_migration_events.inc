@@ -52,7 +52,7 @@ class MathEventsMigration extends Migration {
 
     $this->destination = new MigrateDestinationNode('asc_event');
 
-    $this->addSimpleMappings(array('nid', 'title', 'uid', 'status', 'created', 'changed', 'promote'));
+    $this->addSimpleMappings(array('title', 'uid', 'status', 'created', 'changed', 'promote'));
 
     $this->addFieldMapping('is_new')->defaultValue(TRUE);
     $this->addFieldMapping('revision')->defaultValue(TRUE);
