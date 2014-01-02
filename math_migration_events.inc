@@ -57,6 +57,7 @@ class MathEventsMigration extends Migration {
     $this->addFieldMapping('is_new')->defaultValue(TRUE);
     $this->addFieldMapping('revision')->defaultValue(TRUE);
     $this->addFieldMapping('language')->defaultValue('und');
+    $this->addFieldMapping('body:format')->defaultValue('html');
 
     $this->addFieldMapping('path')->issueGroup(t('DNM'));
     $this->addFieldMapping('pathauto_perform_alias')->defaultValue('1');
