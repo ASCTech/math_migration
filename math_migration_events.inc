@@ -13,7 +13,7 @@ class MathEventssMigration extends Migration {
   public function __construct() {
     parent::__construct();
 
-    $this->description = t('Migrate legacy stories.');
+    $this->description = t('Migrate legacy events.');
 
     Database::addConnectionInfo('for_migration', 'default', array(
       'driver' => 'mysql',
