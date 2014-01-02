@@ -9,7 +9,7 @@
  * Pull in stories.
  */
 
-class MathEventssMigration extends Migration {
+class MathEventsMigration extends Migration {
   public function __construct() {
     parent::__construct();
 
